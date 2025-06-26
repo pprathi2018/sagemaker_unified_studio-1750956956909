@@ -1,4 +1,4 @@
-name: ReleaseCenter Deployment Workflow
+name: ReleaseCenter Deployment Workflow SMUS Project
 
 on:
   workflow_dispatch:
