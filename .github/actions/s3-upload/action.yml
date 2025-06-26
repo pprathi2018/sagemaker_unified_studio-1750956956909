@@ -1,0 +1,21 @@
+name: 'S3 Upload'
+description: 'Upload repository content to the S3 bucket folder'
+
+inputs:
+  s3-stage-name:
+    description: 'S3 bucket folder path'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::101874681190:role/GitHubActionsTestRole
+        aws-region: us-east-1
+        role-session-name: GitHubActionsS3Upload
+    - name: Upload to S3
+      shell: bash
+      run: |
+        aws s3 sync . s3://amazon-sagemaker-101874681190-us-east-1-a7522f4eb53b/dzd_5uxsu9a5abqorr/3ifgm52xlj3p9j/sys/code/${{ inputs.s3-stage-name }}/pprathi2018/sagemaker_unified_studio-1750956956909/main/ --delete --exclude ".git/*" --exclude ".github/*"
