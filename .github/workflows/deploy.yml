@@ -12,6 +12,8 @@ jobs:
     name: Build Dev stage
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo code
+        uses: actions/checkout@v4
       - name: Run Python file
         uses: ./.github/actions/run-python-script
         with:
