@@ -18,4 +18,4 @@ runs:
     - name: Upload to S3
       shell: bash
       run: |
-        aws s3 sync . s3://amazon-sagemaker-101874681190-us-east-1-a7522f4eb53b/dzd_5uxsu9a5abqorr/3ifgm52xlj3p9j/sys/code/${{ inputs.s3-stage-name }}/pprathi2018/sagemaker_unified_studio-1750956956909/main/ --delete
+        aws s3 sync . s3://amazon-sagemaker-101874681190-us-east-1-a7522f4eb53b/dzd_5uxsu9a5abqorr/3ifgm52xlj3p9j/sys/code/${{ inputs.s3-stage-name }}/pprathi2018/sagemaker_unified_studio-1750956956909/main/ --delete --exclude ".git/*"
