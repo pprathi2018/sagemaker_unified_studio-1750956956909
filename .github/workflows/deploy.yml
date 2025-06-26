@@ -8,18 +8,26 @@ permissions:
   contents: read
 
 jobs:
+  build-dev:
+    name: Build Dev stage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Python file
+        uses: ./.github/actions/run-python-script
+        with:
+          script-path: hello.py
+      
   deploy-to-test:
     name: Deploy to Test
     runs-on: ubuntu-latest
+    needs: build-dev
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v4
-      - name: Setup python
-        uses: actions/setup-python@v4
+      - name: Run Python file
+        uses: ./.github/actions/run-python-script
         with:
-          python-version: '3.10'
-      - name: Run python file
-        run: python hello.py
+          script-path: hello.py
       - name: Upload to S3 (test)
         uses: ./.github/actions/s3-upload
         with:
